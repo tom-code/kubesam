@@ -1,0 +1,7 @@
+
+kubectl run --rm -i --tty busybox --image=busybox --restart=Never -- sh
+
+
+kubectl scale deployment nginx-headless --replicas=5
+kubectl set image deployment nginx-headless nginx-headless=nginx:1.9.1
+

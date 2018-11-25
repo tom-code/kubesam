@@ -1,0 +1,38 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  myconfig.json: |
+    {
+      "name":"this is supertest",
+      "type":"bla bla bla"
+    }
+---
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-cm
+  labels:
+    app: busybox-cm
+spec:
+  containers:
+  - image: radial/busyboxplus
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+    name: busybox-cm
+    volumeMounts:
+      - name: config-volume
+        mountPath: /bla
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config
+
+
+#kubectl exec --tty -it busybox-curl -- ping 8.8.8.8
