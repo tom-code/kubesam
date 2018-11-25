@@ -2,6 +2,16 @@
 kubectl run --rm -i --tty busybox --image=busybox --restart=Never -- sh
 
 
+kubectl run dig --image=tutum/dnsutils --restart=Never --rm=true --tty --stdin -- bash
+
+kubectl create -f nginx-headless.yaml
+
+
+kubectl get pod nginx-headless-zzz-zzz -ojson | jq
+
+
 kubectl scale deployment nginx-headless --replicas=5
 kubectl set image deployment nginx-headless nginx-headless=nginx:1.9.1
 
+
+kubectl create -f nginx-nodeport.yaml

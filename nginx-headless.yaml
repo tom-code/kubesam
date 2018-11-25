@@ -26,6 +26,7 @@ spec:
       labels:
         app: nginx-headless
     spec:
+      terminationGracePeriodSeconds: 3
       containers:
       - name: nginx-headless
         image: nginx:1.7.9

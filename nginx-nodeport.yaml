@@ -28,6 +28,7 @@ spec:
       labels:
         app: nginx-np
     spec:
+      terminationGracePeriodSeconds: 3
       containers:
       - name: nginx-np
         image: nginx:1.7.9
