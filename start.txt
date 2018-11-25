@@ -15,3 +15,9 @@ kubectl set image deployment nginx-headless nginx-headless=nginx:1.9.1
 
 
 kubectl create -f nginx-nodeport.yaml
+
+
+apifun:
+kubectl proxy --address=0.0.0.0 --disable-filter=true
+curl localhost:8001/api/v1/pods |jq '.items[].metadata.name'
+
